@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<a href="#/add">Nova Tarefa</a>
+<br/>
+<br/>
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Descrição</th>
+		<th>Finalizado?</th>
+		<th>Data de finalização</th>
+	</tr>
+
+
+	<tr id="tarefa_${tarefa.id}" ng-repeat="tarefa in tarefas">
+		<td>{{tarefa.id}}</td>
+		<td>{{tarefa.descricao}}</td>
+
+		<td id="tarefa_${tarefa.id}" ng-show="tarefa.finalizado">
+			<a href="#" onClick="finalizaAgora(${tarefa.id})"> Finalizar </a>
+		</td>
+
+
+		<td ng-show="tarefa.finalizado">Finalizado</td>
+
+		<td>{{tarefa.data}}</td>
+		<td><a ng-click="remover()">Remover</a></td>
+		<td><a href="/alterar.html">Alterar</a></td>
+	</tr>
+</table>

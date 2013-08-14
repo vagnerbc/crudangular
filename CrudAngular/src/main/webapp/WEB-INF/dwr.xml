@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+    "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+  <allow>
+  
+    <create creator="new" javascript="JDate">
+      <param name="class" value="java.util.Date"/>
+    </create>
+    
+    
+    <create creator="spring" javascript="Tarefa">
+      <!--  <param name="beanName" value="TarefaService"/>-->
+      <param name="class" value="com.eits.crudangular.service.TarefaService"/>
+    </create>
+    
+    
+    <create creator="new" javascript="Remote">
+      <param name="class" value="com.eits.crudangular.service.Remote"/>
+    </create>
+    
+  </allow>
+  <!--  <convert converter="bean" match="com.eits.crudangular.service.TarefaService"/>  -->
+</dwr>

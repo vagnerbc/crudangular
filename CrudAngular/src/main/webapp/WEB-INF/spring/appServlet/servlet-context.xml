@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+	<!-- MAPEIA OS RESOURCES - CSS JS IMAGEM ETC -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/partials/**" location="/partials/" />
+	
+	<!-- DEFINE UMA VIEW CONTROLLER -->
+	<mvc:view-controller path="/" view-name="index"/>
+
+
+	<!-- INFORMA QUAL PACOTE CONTÉM AS CLASSES CONTROLE -->
+	<context:component-scan base-package="com.eits.crudangular.controller" />
+
+
+	<!-- HABILITA O USO DAS ANOTACOES -->
+	<mvc:annotation-driven />
+
+
+
+	<!-- BEAN RESPONSAVEL PELA VIEW -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<!-- DATASOURCE - MYSQL <bean id="DataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/> <property 
+		name="url" value="jdbc:mysql://localhost/fj21"/> <property name="username" 
+		value="root"/> <property name="password" value="root"/> </bean> -->
+
+
+	<!-- DATASOURCE - POSTGRESQL -->
+	<bean id="DataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/tarefas" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+
+
+
+	<!-- BEAN RESPONSAVEL PELA PERSISTENCIA JPA -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>
+
+	<!-- post-processors for all standard config annotations -->
+	<context:annotation-config />
+
+
+	<!-- GERENCIAMENTO DE TRANSAÇÕES -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- ANOTACOES DE TRANSACTION -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+
+</beans>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<div>
+	<h2>Página de Login das Tarefas</h2>
+	<form novalidate class="css-form">
+		Login: <input type="text" ng-model="usuario.login" required /> <br />
+		Senha: <input type="password" ng-model="usuario.senha" required /> <br />
+		<button ng-click="entrar()">Entrar</button>
+	</form>
+</div>
+
+
+<style type="text/css">
+.css-form input.ng-invalid.ng-dirty {
+	background-color: #FA787E;
+}
+
+.css-form input.ng-valid.ng-dirty {
+	background-color: #78FA89;
+}
+</style>

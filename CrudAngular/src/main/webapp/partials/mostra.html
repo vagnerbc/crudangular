@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<h3>Alterar tarefa - {{tarefa.id}}</h3>
+<form>
+
+	<input type="hidden" name="id" ng-model="tarefa.id}" /> 
+	Descrição:<br/>
+	<textarea name="descricao" cols="100" rows="5">{{tarefa.descricao}}</textarea><br/>
+	Finalizado? <input type="checkbox" name="finalizado" value="true" /> <br/> 
+	Data de finalização: <br/> 
+	<input type="text"name="dataFinalizacao" value="{{tarefa.data}}" /> <br/>
+
+	<button ng-click=alterar()>Alterar</button>
+</form>
