@@ -1,9 +1,10 @@
 function CreateCtrl($scope, $http) {
 	
 	
-	$scope.adicionar = function() {
-		var descricao = $scope.tarefa.descricao;
-		
+	$scope.adicionar = function(tarefa) {
+		$http.post("adicionaTarefa",tarefa).success(function(){
+			$location.path("/menu");
+		});
 	};
 }
 
