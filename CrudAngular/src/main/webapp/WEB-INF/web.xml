@@ -42,6 +42,7 @@
 	
 
 	<!-- DWR SERVLET -->
+	
 	<servlet>
 		<display-name>DWR Servlet</display-name>
 		<servlet-name>dwr-invoker</servlet-name>
