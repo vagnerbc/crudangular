@@ -38,9 +38,11 @@ public class TarefasController {
 	
 	
 	@Transactional
+	@ResponseBody
 	@RequestMapping(value="adicionaTarefa", method=RequestMethod.POST)
-	public void adiciona(@RequestBody Tarefa tarefa) {
+	public String adiciona(@RequestBody Tarefa tarefa) {
 		dao.adiciona(tarefa);
+		return "ok";
 	}
 	
 	
@@ -52,9 +54,11 @@ public class TarefasController {
 	
 	
 	@Transactional
+	@ResponseBody
 	@RequestMapping("removeTarefa")
-	public void remove(@RequestBody Tarefa tarefa) {
+	public String remove(@RequestBody Tarefa tarefa) {
 		dao.remove(tarefa);
+		return "ok";
 	}
 	
 	
@@ -71,10 +75,12 @@ public class TarefasController {
 	}
 	
 	
-	
+	@Transactional
+	@ResponseBody
 	@RequestMapping("finalizaTarefa")
-	public void finaliza(Long id, Model model) {
+	public String finaliza(@RequestBody Long id) {
 		dao.finaliza(id);
+		return "ok";
 	}
 	
 }

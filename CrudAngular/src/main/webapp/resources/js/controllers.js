@@ -1,4 +1,4 @@
-function CreateCtrl($scope, $http) {
+function CreateCtrl($scope, $http, $location) {
 	
 	
 	$scope.adicionar = function(tarefa) {
@@ -10,8 +10,27 @@ function CreateCtrl($scope, $http) {
 
 
 
-function ListCtrl($scope) {
+function ListCtrl($scope, $http) {
 	
+	$scope.lista = function(){
+		$http.get("listaTarefas").success(function(data){
+			$scope.tarefas = data;
+		});
+	};
+	
+	$scope.remove = function(tarefa){
+		$http.post("removeTarefa",tarefa).success(function(){
+			$scope.lista();
+		});
+	};
+	
+	$scope.finaliza = function(id){
+		$http.post("finalizaTarefa",id).success(function(){
+			$scope.lista();
+		});
+	};
+	
+	$scope.lista();
 }
 
 

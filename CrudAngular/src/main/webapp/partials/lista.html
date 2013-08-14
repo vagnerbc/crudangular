@@ -18,15 +18,17 @@ Buscar: <input ng-model="query">
 		<td>{{tarefa.id}}</td>
 		<td>{{tarefa.descricao}}</td>
 
+		<td ng-hide="tarefa.finalizado">
+			<a href="" ng-click="finaliza({{tarefa.id}})"> Finalizar </a>
+		</td>
+		
 		<td ng-show="tarefa.finalizado">
-			<a href="#" onClick="finalizaAgora(${tarefa.id})"> Finalizar </a>
+			<span>Finalizado</span>
 		</td>
 
 
-		<td ng-show="tarefa.finalizado">Finalizado</td>
-
-		<td>{{tarefa.data}}</td>
-		<td><a ng-click="remover()">Remover</a></td>
-		<td><a href="/alterar.html">Alterar</a></td>
+		<td>{{tarefa.dataFinalizacao}}</td>
+		<td><a href="" ng-click="remove(tarefa)">Remover</a></td>
+		<td><a href="#/update">Alterar</a></td>
 	</tr>
 </table>

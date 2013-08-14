@@ -29,7 +29,6 @@ public class JpaTarefaDao implements TarefaDao {
 	
 	@Transactional
 	public void altera(Tarefa tarefa) {
-		//System.out.println(tarefa.getId());
 		manager.merge(tarefa);
 	}
 	
