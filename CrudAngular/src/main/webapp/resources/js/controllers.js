@@ -16,9 +16,12 @@ function ListCtrl($scope) {
 
 
 
-function LoginCtrl($scope, $location) {
+function LoginCtrl($scope, $rootScope, $location) {
+	
+	$rootScope.login = $scope.login;
 	
 	$scope.entrar = function(){
+		$rootScope.login = $scope.login;
 		$location.path("/menu");
 	};
 	
@@ -27,9 +30,11 @@ function LoginCtrl($scope, $location) {
 
 
 
-function MenuCtrl($scope, $location) {
-	$scope.logout = function(){
-		
+function MenuCtrl($scope, $rootScope, $location) {
+	
+	$scope.login = $rootScope.login;
+	
+	$scope.logout = function(){	
 		$location.path("/");
 	};
 }

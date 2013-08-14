@@ -4,6 +4,7 @@
 <a href="#/add">Nova Tarefa</a>
 <br/>
 <br/>
+Buscar: <input ng-model="query">
 <table>
 	<tr>
 		<th>Id</th>
@@ -13,11 +14,11 @@
 	</tr>
 
 
-	<tr id="tarefa_${tarefa.id}" ng-repeat="tarefa in tarefas">
+	<tr ng-repeat="tarefa in tarefas | filter:query">
 		<td>{{tarefa.id}}</td>
 		<td>{{tarefa.descricao}}</td>
 
-		<td id="tarefa_${tarefa.id}" ng-show="tarefa.finalizado">
+		<td ng-show="tarefa.finalizado">
 			<a href="#" onClick="finalizaAgora(${tarefa.id})"> Finalizar </a>
 		</td>
 
